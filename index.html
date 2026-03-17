@@ -22,12 +22,12 @@
         const ctx = canvas.getContext('2d');
 
         // Game variables
-        let bird = { x: 50, y: 150, width: 20, height: 20, gravity: 0.6, lift: -10, velocity: 0 };
+        let bird = { x: 50, y: 150, width: 20, height: 20, gravity: 0.4, lift: -8, velocity: 0 };
         let pipes = [];
         let score = 0;
         let gameOver = false;
         const pipeWidth = 40;
-        const pipeGap = 100;
+        const pipeGap = 150;
         let frame = 0;
 
         function drawBird() {
@@ -60,7 +60,7 @@
 
         function movePipes() {
             for (let i = 0; i < pipes.length; i++) {
-                pipes[i].x -= 2;
+                pipes[i].x -= 1.5;
 
                 if (pipes[i].x + pipeWidth < bird.x && !pipes[i].passed) {
                     score++;
@@ -68,7 +68,7 @@
                 }
             }
 
-            if (frame % 90 === 0) {
+            if (frame % 120 === 0) {
                 let pipeHeight = Math.random() * (canvas.height / 2 - pipeGap / 2) + 20;
                 pipes.push({ x: canvas.width, top: pipeHeight, bottom: canvas.height - pipeHeight - pipeGap, passed: false });
             }
@@ -102,7 +102,7 @@
         }
 
         function restartGame() {
-            bird = { x: 50, y: 150, width: 20, height: 20, gravity: 0.6, lift: -10, velocity: 0 };
+            bird = { x: 50, y: 150, width: 20, height: 20, gravity: 0.4, lift: -8, velocity: 0 };
             pipes = [];
             score = 0;
             gameOver = false;
